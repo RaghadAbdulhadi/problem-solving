@@ -237,3 +237,101 @@ const classesAvg = (data) => {
 };
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//DOM manipulation
+/*
+1. Methods
+document.getElementById
+documenet.getElementByTagName
+documenet.getElementByClassName
+documenet.createElement
+
+2. Properties
+h1ElinnerHTML
+*/
+let h1El = document.getElementById('h1')
+h1El.innerHTML = "LTUC"
+h1El.style = 'color :blue';
+h1El.textContent += 'rtyu'; //adding to the content 
+
+//to create new element
+/**
+1. create the element
+2. append the new element to its paraent
+3. add the contenet for the new element 
+ */
+let section = document.getElementById('drink')//get the parent to append the child
+let pEl = document.createElement('p');//1
+section.appendChild(pEl)//2
+pEl.textContent = 'hello python'//3
+
+
+
+
+
+
+
+
+
+
+
+function Drink(name,ingreadiants,isCold,isHot,price){
+    this.name = name;
+    this.ingreadiants = ingreadiants;
+    this.imagePath = `./images/${this.name}.PNG`;
+    this.isCold=isCold;
+    this.isHot = isHot;
+    this.price = 0;
+}
+
+const espresso = new Drink('espresso',['espresso'],false,true,2);
+const latte = new Drink('latte',['espresso','milk','wipped milk'],true,true,5);
+const mocha = new Drink('mocha',['espresso milk','wipped cream','choc syrub'],true,true,3);
+
+espresso.calculatePrice(2,10);
+latte.calculatePrice(2,10);
+mocha.calculatePrice(2,10);
+
+Drink.prototype.calculatePrice = function(min, max){
+    this.price = getRandomInt(min,max)
+}
+
+Drink.prototype.render = function(){
+    document.write(`<p>${this.name} is added to the menu and its price is ${this.price}</p>`)//js interpolation
+}
+
+
+espresso.render();
+latte.render();
+mocha.render();
+
+
+// function number :
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+  }
+
+  //Tax = (randomSalary*tax persentage)
+  // netSalary = randomSalary - Tax 
+  
