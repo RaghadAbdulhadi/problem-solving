@@ -20,6 +20,7 @@
 
 const objLat = (obj) => {
     // write your code here
+    return "my name is " + obj.firstName.charAt(0).toUpperCase() + obj.firstName.slice(1) + " " + obj.lastName.charAt(0).toUpperCase() + obj.lastName.slice(1) + " I am " + obj.age + " YO, and I love " + obj.hobby + "."
 };
 
 // 2) ---------------------
@@ -82,10 +83,24 @@ const objLat = (obj) => {
 //  2- If one of the names is null dont add it to the full name
 
 // ------------------------
+
 const cvFormatter = (arr) => {
-    
     // write your code here
+    let newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].yearsOfExperience > 1) {
+            if (arr[i].firstName != null && arr[i].lastName != null) {
+                newArr.push({ fullName: arr[i].firstName + " " + arr[i].lastName, tech: arr[i].tech });
+            } else if (arr[i].firstName == null) {
+                newArr.push({ fullName: arr[i].lastName, tech: arr[i].tech });
+            } else {
+                newArr.push({ fullName: arr[i].firstName, tech: arr[i].tech });
+            }
+        }
+    }
+    return newArr;
 };
+
 
 // 3) ---------------------
 //
@@ -109,6 +124,33 @@ const cvFormatter = (arr) => {
 // ------------------------
 const applicationsStatics = (arr) => {
     // write your code here
+    let result = {};
+    let jsSum = 0;
+    let pythSum = 0;
+    let dotSum = 0;
+    let rejSum = 0;
+    let javaSum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].yearsOfExperience <= 1 && arr[i].firstName == null || arr[i].lastName == null) {
+            result.rejectedApplicants = rejSum = rejSum + 1;
+        }
+        if (arr[i].tech === "Python") {
+            result.python_Devs = pythSum = pythSum + 1;
+        }
+        else if (arr[i].tech === "JS") {
+            result.javaScript_Devs = (jsSum = jsSum + 1);
+        }
+        else if (arr[i].tech === ".Net") {
+            result.dotNet_Devs = dotSum = dotSum + 1;
+        }
+        else if (arr[i].tech === "Java") {
+            result.java_Devs = javaSum = javaSum + 1;
+        }
+
+        result.totalApplicants = arr.length;
+
+    }
+    return result;
 };
 
 // 4) ---------------------
@@ -234,104 +276,15 @@ let data = {
 
 const classesAvg = (data) => {
     // write your code here
-};
+    let avgScore = 0;
+    for (let i = 0; i < data.grades.length; i++) {
+      for (let j = 0; j < data.grades[i].classes.length; j++) {
+        data.grades[i].classes[j].avg = data.grades[i].classes[j].classScores.forEach(item => {
+          avgScore = avgScore + item / (data.grades[i].classes[j].classScores.length);
+        });
+      }
+    }
+  return data;
+  };
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//DOM manipulation
-/*
-1. Methods
-document.getElementById
-documenet.getElementByTagName
-documenet.getElementByClassName
-documenet.createElement
-
-2. Properties
-h1ElinnerHTML
-*/
-let h1El = document.getElementById('h1')
-h1El.innerHTML = "LTUC"
-h1El.style = 'color :blue';
-h1El.textContent += 'rtyu'; //adding to the content 
-
-//to create new element
-/**
-1. create the element
-2. append the new element to its paraent
-3. add the contenet for the new element 
- */
-let section = document.getElementById('drink')//get the parent to append the child
-let pEl = document.createElement('p');//1
-section.appendChild(pEl)//2
-pEl.textContent = 'hello python'//3
-
-
-
-
-
-
-
-
-
-
-
-function Drink(name,ingreadiants,isCold,isHot,price){
-    this.name = name;
-    this.ingreadiants = ingreadiants;
-    this.imagePath = `./images/${this.name}.PNG`;
-    this.isCold=isCold;
-    this.isHot = isHot;
-    this.price = 0;
-}
-
-const espresso = new Drink('espresso',['espresso'],false,true,2);
-const latte = new Drink('latte',['espresso','milk','wipped milk'],true,true,5);
-const mocha = new Drink('mocha',['espresso milk','wipped cream','choc syrub'],true,true,3);
-
-espresso.calculatePrice(2,10);
-latte.calculatePrice(2,10);
-mocha.calculatePrice(2,10);
-
-Drink.prototype.calculatePrice = function(min, max){
-    this.price = getRandomInt(min,max)
-}
-
-Drink.prototype.render = function(){
-    document.write(`<p>${this.name} is added to the menu and its price is ${this.price}</p>`)//js interpolation
-}
-
-
-espresso.render();
-latte.render();
-mocha.render();
-
-
-// function number :
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-  }
-
-  //Tax = (randomSalary*tax persentage)
-  // netSalary = randomSalary - Tax 
-  
