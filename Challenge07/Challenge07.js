@@ -275,16 +275,26 @@ let data = {
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
-    // write your code here
+    //write your code here
     let avgScore = 0;
+    let sumScore = 0;
     for (let i = 0; i < data.grades.length; i++) {
-      for (let j = 0; j < data.grades[i].classes.length; j++) {
-        data.grades[i].classes[j].avg = data.grades[i].classes[j].classScores.forEach(item => {
-          avgScore = avgScore + item / (data.grades[i].classes[j].classScores.length);
-        });
-      }
+
+        for (let j = 0; j < data.grades[i].classes.length; j++) {
+
+            data.grades[i].classes[j].classScores.forEach(item => {
+                sumScore = sumScore + item;
+
+                avgScore = Math.floor(sumScore / data.grades[i].classes[j].classScores.length);
+            });
+
+            data.grades[i].classes[j].avg = avgScore;
+
+            avgScore = 0;
+            sumScore = 0;
+        }
     }
-  return data;
-  };
+    return data;
+};
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
