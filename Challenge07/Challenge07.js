@@ -292,7 +292,7 @@ const classesAvg = (data) => {
 
             avgScore = 0;
             sumScore = 0;
-        }
+    }
     }
     return data;
 };
