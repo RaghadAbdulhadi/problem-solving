@@ -131,17 +131,18 @@ const employeesBonus = (arr) => {
 // ------------------------
 const mostExpensive = (budget, mouseArray, keyBoardArray) => {
     // write your code here
-    let price;
-    mouseArray.sort((a, b) => {return a-b}).forEach((mousePrice) => {
-        keyBoardArray.sort((a, b) => {return a-b}).forEach((keyBoardPrice) => {
-
-            if (mousePrice + keyBoardPrice == budget) {
-             return price = mousePrice + keyBoardPrice;
-            }
-        })
-
+    
+    let arr2 = []
+    mouseArray.forEach((mousePrice) => {
+      keyBoardArray.forEach((keyBoardPrice) => {
+        if (mousePrice + keyBoardPrice <= budget ) {
+          arr2.push(mousePrice + keyBoardPrice)
+        }
     })
-    return price;
-}
+  })
+    return Math.max(...arr2)
+  // console.log(mouseArray)
+  // console.log(keyBoardArray)
+  }
 
 module.exports = { arrInc, roundDecimals, employeesBonus, mostExpensive };
