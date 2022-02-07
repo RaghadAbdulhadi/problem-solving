@@ -67,6 +67,8 @@ const getEntries = (obj) => {
   });
   return arr;
 };
+
+
 // -------------------------------------------------------------------------------------------------------
 // Challenge 03
 
@@ -151,8 +153,6 @@ const getStudents = (arr) => {
   };
   return studentsInfo;
 };
-
-
 
 module.exports = {
   customerAndAge,
