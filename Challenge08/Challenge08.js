@@ -28,7 +28,13 @@
 
 const customerAndAge = (obj) => {
   // write your code here
-};
+  let arr = [];
+  for (let customer in obj) {
+    let strFormat = `Customer Name :${customer} , Age :${obj[customer]}`
+    arr.push(strFormat);
+  }
+  return arr;
+}
 
 // -------------------------------------------------------------------------------------------------------
 // Challenge 02
@@ -55,7 +61,13 @@ const customerAndAge = (obj) => {
 
 const getEntries = (obj) => {
   // write your code here
+  let arr = [];
+  Object.entries(obj).forEach(([key, value]) => {
+    arr.push(`${key}: ${value}`)
+  });
+  return arr;
 };
+
 
 // -------------------------------------------------------------------------------------------------------
 // Challenge 03
@@ -96,9 +108,15 @@ const getInfo = (arr) => {
   let coursesName = [];
   let studentsName = [];
   // write your code here
+  for (let obj in arr) {
+    coursesName.push(arr[obj].course)
+    for (let students of arr[obj].Students) {
+      studentsName.push(students)
+    }
+  }
 
   return { coursesName, studentsName };
-};
+}
 
 //  ------------------------------------------------------------------------------------------------------
 // Challenge 04
@@ -120,7 +138,20 @@ const getInfo = (arr) => {
 
 const getStudents = (arr) => {
   // write your code here
-
+  let studentsInfo = [];
+  for (let nameTest in arr) {
+    for (let obj in courses) {
+      for (let name in courses[obj].Students) {
+        if (courses[obj].Students[name] == arr[nameTest]) {
+          let studentInfo = {};
+          studentInfo.Student = arr[nameTest]
+          studentInfo.course = courses[obj].course
+          studentsInfo.push(studentInfo);
+        }
+      }
+    }
+  };
+  return studentsInfo;
 };
 
 module.exports = {
